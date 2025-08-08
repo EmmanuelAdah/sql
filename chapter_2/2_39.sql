@@ -1,0 +1,1 @@
+/*  I used the WHERE Clause. Because in the course of operation, it checks a particular location where the condition is met before execution. */
