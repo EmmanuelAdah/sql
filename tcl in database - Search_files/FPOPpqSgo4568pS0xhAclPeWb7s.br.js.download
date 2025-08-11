@@ -1,0 +1,1 @@
+var GenSerpPassageAnimation;(function(n){function r(){let n=document.querySelectorAll(i);n&&n.length!=0&&Array.prototype.slice.call(n).forEach(function(n){n.classList.contains(t)||n.classList.add(t)})}const i=".gs_main .gs_temp",t="gs_psa";n.init=r;sj_evt.fire("gs_psgani_loaded")})(GenSerpPassageAnimation||(GenSerpPassageAnimation={}))

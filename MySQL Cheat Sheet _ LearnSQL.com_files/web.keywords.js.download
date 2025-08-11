@@ -1,0 +1,5 @@
+
+        window.$adManagementConfig = window.$adManagementConfig || {};
+        window.$adManagementConfig.web = window.$adManagementConfig.web || {};
+        window.$adManagementConfig.web.keywords = {"status":"PROCESSED","sales_kw":"mysql,specified table,datum,name,expr,time function,select city,column name,age int,group,numeric function,number,null,animal,interval","sales_cat":"611,602,599,596","sales_safety":"GGT0"};
+      

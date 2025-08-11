@@ -1,0 +1,105 @@
+/* Reference:
+* https://lesscss.org/features/#maps-feature
+* https://lesscss.org/functions/#color-definition
+* https://lesscss.org/features/#variables-feature-variable-interpolation
+*/
+@cheat-sheet: {
+	blue: #0078ff;
+	gray: #777777;
+	grayblue: #b6c4dc;
+	green: #42cb9a;
+	orange: #ff7700;
+	pink: #d75da2;
+	violet: #b756e3;
+}
+@cheat-sheet-table: {
+	th: @cheat-sheet[grayblue];
+	even-row: tint(@cheat-sheet[grayblue], 50%);
+
+	blue: tint(@cheat-sheet[blue], 50%);
+	gray: tint(@cheat-sheet[gray], 50%);
+	green: tint(@cheat-sheet[green], 50%);
+	orange: tint(@cheat-sheet[orange], 50%);
+	pink: tint(@cheat-sheet[pink], 50%);
+	violet: tint(@cheat-sheet[violet], 50%);
+}
+
+:root {
+	each(@cheat-sheet, {
+		--cheat-sheet-@{key}: @value;
+	});
+	each(@cheat-sheet-table, {
+		--cheat-sheet-table-@{key}: @value;
+	});
+	--page-padding-size: 0.5cm;
+}
+@page-padding-size: var(--page-padding-size);
+
+* {
+	box-sizing: border-box;
+	print-color-adjust: exact;
+	-webkit-print-color-adjust: exact;
+}
+
+html { font-size: 7pt; }
+
+
+b {
+	font-weight: bold;
+}
+
+i {
+	font-style: italic;
+}
+
+each(@cheat-sheet, {
+	@{key} {
+		color: @value !important;
+		// color: var(--cheat-sheet-$@key);
+	}
+	@{key}b {
+		color: @value !important;
+		font-weight: bold;
+	}
+	@{key}i {
+		color: @value !important;
+		font-style: italic;
+	}
+});
+
+each(@cheat-sheet-table, {
+	.table-bg-@{key} {
+		background-color: @value !important;
+	}
+});
+
+h1 { font-size: 5.5rem; }
+
+h2, h3, h4, h5, h6 {
+	color: var(--cheat-sheet-blue);
+	font-weight: bold;
+}
+
+
+
+table {
+	th, td {
+		border: 2px solid #fff;
+		padding: 1px 3px;
+	}
+
+	th {
+		background-color: var(--cheat-sheet-table-th);
+		font-weight: bold;
+	}
+
+	td {
+		background-color: #fff;
+	}
+
+	tr:nth-of-type(even) td {	
+		background-color: var(--cheat-sheet-table-even-row);
+	}
+}
+
+
