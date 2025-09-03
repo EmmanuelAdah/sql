@@ -1,5 +1,6 @@
 package com.pickup.data.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Data;
@@ -12,5 +13,5 @@ public class TrackingInfos {
     @Id
     private String trackingId;
     private String itemId;
-    private List<TrackingInfo> trackingInfos;
+    private List<TrackingInfo> trackingInfos = new ArrayList<>();
 }
