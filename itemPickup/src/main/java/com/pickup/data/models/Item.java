@@ -13,8 +13,10 @@ public class Item {
     @Id
     private String itemId;
     private String itemName;
+    private String senderName;
     private String weightInGrams;
     private String description;
+    private String receiverName;
 
     @DBRef
     private TrackingInfos trackingInfos;
