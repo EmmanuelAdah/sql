@@ -10,12 +10,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ItemsTest {
 
     @Autowired
-    private Items items;
+    private ItemsRepo itemsRepo;
 
     @Test
     void countTest() {
-        items.deleteAll();
-        items.save(new Item());
-        assertEquals(1L, items.count());
+        itemsRepo.deleteAll();
+        itemsRepo.save(new Item());
+        assertEquals(1L, itemsRepo.count());
     }
 }
