@@ -1,18 +1,20 @@
 package com.springDemo.demo.repository;
 
 import com.springDemo.demo.models.Alien;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
+@Getter
 @Repository
 public class AlienRepository {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public void jdbcConfig(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public void setJdbcTemplate(JdbcTemplate template){
+        this.jdbcTemplate = template;
     }
 
     public void saveAlien(Alien alien) {
