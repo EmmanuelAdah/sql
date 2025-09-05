@@ -1,6 +1,6 @@
 package com.pickup.services;
 
-import com.pickup.data.repository.Items;
+import com.pickup.data.repository.ItemsRepo;
 import com.pickup.dtos.request.SendItemRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +14,11 @@ class ItemServiceImplTest {
     private ItemServiceImpl itemService;
 
     @Autowired
-    private Items items;
+    private ItemsRepo itemsRepo;
 
     @Test
     void itemServiceTest() {
         itemService.sendItem(new SendItemRequest());
-        assertEquals(1, items.count());
+        assertEquals(1, itemsRepo.count());
     }
 }
