@@ -1,13 +1,17 @@
 package com.springDemo.demo.models;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.Data;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 @Data
-@Component
+@Entity
 @Scope("prototype")
 public class Alien {
+    @Id
+    @Column(name = "id", updatable = false, nullable = false)
     private int id;
     private String name;
     private String tech;
@@ -20,6 +24,7 @@ public class Alien {
                 ", tech='" + tech + '\'' +
                 '}';
     }
+
 }
 
 
