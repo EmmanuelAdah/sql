@@ -1,4 +1,4 @@
-package com.springDemo.demo.repository;
+package com.springDemo.demo.repositories;
 
 import com.springDemo.demo.models.Alien;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import java.util.List;
 
 @Getter
 @Repository
-public class AlienRepository {
+public class AlienRepository  {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
@@ -18,12 +18,12 @@ public class AlienRepository {
     }
 
     public void saveAlien(Alien alien) {
-        String sql = "INSERT INTO alien (id, name, tech) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO aliens (id, name, tech) VALUES (?, ?, ?)";
         jdbcTemplate.update(sql, alien.getId(), alien.getName(), alien.getTech());
     }
 
     public List<Alien> findAll() {
-        String sql = "SELECT * FROM alien";
+        String sql = "SELECT * FROM alien.aliens";
         return jdbcTemplate.query(sql, (rs, rowNum) -> {
             Alien alien = new Alien();
             alien.setId(rs.getInt("id"));
@@ -31,6 +31,12 @@ public class AlienRepository {
             alien.setTech(rs.getString("tech"));
             return alien;
         });
+    }
+
+    public String deleteAll() {
+        String sql = "DELETE FROM alien";
+        jdbcTemplate.execute(sql);
+        return "Aliens deleted successfully...";
     }
 }
 
