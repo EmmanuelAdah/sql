@@ -34,8 +34,8 @@ public class AlienRepository  {
     }
 
     public String deleteAll() {
-        String sql = "DELETE FROM alien";
-        jdbcTemplate.execute(sql);
+        String sql = "DELETE FROM aliens";
+        jdbcTemplate.update(sql);
         return "Aliens deleted successfully...";
     }
 }
