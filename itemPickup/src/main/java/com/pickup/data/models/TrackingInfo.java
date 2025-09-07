@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class TrackingInfo {
+
     private LocalDateTime createdAt;
     private String event;
 }
