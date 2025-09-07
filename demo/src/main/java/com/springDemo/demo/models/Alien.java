@@ -1,30 +1,19 @@
 package com.springDemo.demo.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.context.annotation.Scope;
 
 @Data
 @Entity
-@Scope("prototype")
+@Table(name = "aliens")
 public class Alien {
     @Id
-    @Column(name = "id", updatable = false, nullable = false)
-    private int id;
+    @Column(name = "id", nullable = false)
+    private Integer id;
+
+    @Column(name = "name", length = 50)
     private String name;
+
+    @Column(name = "tech", length = 50)
     private String tech;
-
-    @Override
-    public String toString() {
-        return "Alien{" +
-                ", id=" + id + '\'' +
-                ", name='" + name +
-                ", tech='" + tech + '\'' +
-                '}';
-    }
-
 }
-
-
