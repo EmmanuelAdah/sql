@@ -2,7 +2,6 @@ package com.springDemo.demo;
 
 import com.springDemo.demo.controller.AlienController;
 import com.springDemo.demo.dtos.requests.AlienRequest;
-import com.springDemo.demo.repositories.AlienRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -16,7 +15,7 @@ public class DemoApplication {
 		ApplicationContext context = SpringApplication.run(DemoApplication.class, args);
 
 		AlienController controller = context.getBean(AlienController.class);
-//		System.out.println(controller.deleteAll());
+		System.out.println(controller.deleteAll());
 
 		AlienRequest alienRequest = context.getBean(AlienRequest.class);
 		alienRequest.setId(1);
