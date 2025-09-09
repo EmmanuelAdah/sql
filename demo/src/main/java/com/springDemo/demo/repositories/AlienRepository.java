@@ -2,6 +2,7 @@ package com.springDemo.demo.repositories;
 
 import com.springDemo.demo.models.Alien;
 import lombok.Getter;
+import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -37,6 +38,28 @@ public class AlienRepository  {
         String sql = "DELETE FROM aliens";
         jdbcTemplate.update(sql);
         return "Aliens deleted successfully...";
+    }
+
+    public Alien findById(int id) {
+        String sql = "SELECT * FROM aliens  WHERE id = ?";
+        return getAlien(sql);
+    }
+
+    public Alien findByName(String name) {
+        String sql = "SELECT * FROM aliens  WHERE name = ?";
+        return getAlien(sql);
+    }
+
+    @Nullable
+    private Alien getAlien(String sql) {
+        jdbcTemplate.queryForObject(sql, (rs, rowNumber) -> {
+            Alien alien = new Alien();
+            alien.setId(rs.getInt("id"));
+            alien.setName(rs.getString("name"));
+            alien.setTech(rs.getString("tech"));
+            return alien;
+        });
+        return null;
     }
 }
 
