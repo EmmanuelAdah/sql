@@ -1,14 +1,13 @@
 package com.springDemo.demo.repositories;
 
 import com.springDemo.demo.models.Alien;
-import lombok.Getter;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
-@Getter
 @Repository
 public class AlienRepository  {
     private JdbcTemplate jdbcTemplate;
@@ -42,24 +41,24 @@ public class AlienRepository  {
 
     public Alien findById(int id) {
         String sql = "SELECT * FROM aliens  WHERE id = ?";
-        return getAlien(sql);
+        return jdbcTemplate.queryForObject(sql, getAlien(sql), id);
     }
 
     public Alien findByName(String name) {
         String sql = "SELECT * FROM aliens  WHERE name = ?";
-        return getAlien(sql);
+        return jdbcTemplate.queryForObject(sql, getAlien(sql), name);
     }
 
-    @Nullable
-    private Alien getAlien(String sql) {
-        jdbcTemplate.queryForObject(sql, (rs, rowNumber) -> {
+    @NotNull
+    private RowMapper<Alien> getAlien(String sql) {
+        RowMapper<Alien> rowMapper = (rs, rowNumber) -> {
             Alien alien = new Alien();
             alien.setId(rs.getInt("id"));
             alien.setName(rs.getString("name"));
             alien.setTech(rs.getString("tech"));
             return alien;
-        });
-        return null;
+        };
+        return rowMapper;
     }
 }
 
