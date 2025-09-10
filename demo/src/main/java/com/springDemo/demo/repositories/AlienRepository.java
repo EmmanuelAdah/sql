@@ -18,8 +18,9 @@ public class AlienRepository  {
     }
 
     public void saveAlien(Alien alien) {
-        String sql = "INSERT INTO aliens (id, name, tech) VALUES (?, ?, ?)";
-        jdbcTemplate.update(sql, alien.getId(), alien.getName(), alien.getTech());
+//        createTable();
+        String sql = "INSERT INTO aliens (id, name, techStack) VALUES (?, ?, ?)";
+        jdbcTemplate.update(sql, alien.getId(), alien.getName(), alien.getTechStack());
     }
 
     public List<Alien> findAll() {
@@ -28,7 +29,7 @@ public class AlienRepository  {
             Alien alien = new Alien();
             alien.setId(rs.getInt("id"));
             alien.setName(rs.getString("name"));
-            alien.setTech(rs.getString("tech"));
+            alien.setTechStack(rs.getString("techStack"));
             return alien;
         });
     }
@@ -49,16 +50,37 @@ public class AlienRepository  {
         return jdbcTemplate.queryForObject(sql, getAlien(sql), name);
     }
 
+    public String deleteById(int id) {
+        String sql = "DELETE FROM aliens  WHERE id = ?";
+        jdbcTemplate.update(sql, id);
+        return String.format("Alien with ID: %d deleted successfully...", id);
+    }
+
+    public String deleteByName(String name) {
+        String sql = "DELETE FROM aliens  WHERE name = ?";
+        jdbcTemplate.update(sql, name);
+        return String.format("%s was deleted successfully...", name);
+    }
+
     @NotNull
     private RowMapper<Alien> getAlien(String sql) {
         RowMapper<Alien> rowMapper = (rs, rowNumber) -> {
             Alien alien = new Alien();
             alien.setId(rs.getInt("id"));
             alien.setName(rs.getString("name"));
-            alien.setTech(rs.getString("tech"));
+            alien.setTechStack(rs.getString("techStack"));
             return alien;
         };
         return rowMapper;
+    }
+
+    public void createTable() {
+        String sql = "CREATE TABLE IF NOT EXISTS aliens (" +
+                "id SERIAL PRIMARY KEY, " +
+                "name VARCHAR(50) NOT NULL, " +
+                "techStack VARCHAR(100) NOT NULL" +
+                ")";
+        jdbcTemplate.execute(sql);
     }
 }
 
