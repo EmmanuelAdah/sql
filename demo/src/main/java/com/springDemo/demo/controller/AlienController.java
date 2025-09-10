@@ -22,13 +22,13 @@ public class AlienController {
         return alienService.saveAlien(alienRequest);
     }
 
-    @GetMapping("/get/{id}")
-    public AlienResponse findAlienById(@PathVariable int id){
+    @GetMapping("/get_by_id")
+    public AlienResponse findAlienById(@RequestParam int id){
         return alienService.findByAlienId(id);
     }
 
-    @GetMapping("/get/{name}")
-    public AlienResponse findAlienByName(@PathVariable String name){
+    @GetMapping("/get_by_name")
+    public AlienResponse findAlienByName(@RequestParam String name){
         return alienService.findByAlienName(name);
     }
 
@@ -40,5 +40,15 @@ public class AlienController {
     @DeleteMapping("/delete/aliens")
     public String deleteAll(){
         return alienService.deleteAll();
+    }
+
+    @DeleteMapping("/delete_by_id")
+    public String deleteAlienById(@RequestParam int id){
+        return alienService.deleteById(id);
+    }
+
+    @DeleteMapping("/delete_by_name")
+    public String deleteByName(@RequestBody String name){
+        return alienService.deleteByName(name);
     }
 }
