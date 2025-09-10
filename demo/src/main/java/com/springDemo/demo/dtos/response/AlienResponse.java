@@ -8,5 +8,5 @@ import org.springframework.stereotype.Component;
 public class AlienResponse {
     private int id;
     private String name;
-    private String tech;
+    private String techStack;
 }
