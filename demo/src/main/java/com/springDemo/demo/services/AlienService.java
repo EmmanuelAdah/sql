@@ -42,4 +42,12 @@ public class AlienService {
         Alien alien = alienRepository.findByName(name);
         return map(alien);
     }
+
+    public String deleteById(@RequestBody int id) {
+        return alienRepository.deleteById(id);
+    }
+
+    public String deleteByName(@RequestBody String name) {
+        return alienRepository.deleteByName(name);
+    }
 }
