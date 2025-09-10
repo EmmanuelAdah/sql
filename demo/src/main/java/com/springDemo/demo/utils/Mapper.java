@@ -10,7 +10,7 @@ public class Mapper {
         Alien alien = new Alien();
         alien.setId(alienRequest.getId());
         alien.setName(alienRequest.getName());
-        alien.setTech(alienRequest.getTech());
+        alien.setTechStack(alienRequest.getTechStack());
         return alien;
     }
 
@@ -18,7 +18,7 @@ public class Mapper {
         AlienResponse alienResponse = new AlienResponse();
         alienResponse.setId(alien.getId());
         alienResponse.setName(alien.getName());
-        alienResponse.setTech(alien.getTech());
+        alienResponse.setTechStack(alien.getTechStack());
         return alienResponse;
     }
 }
